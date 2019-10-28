@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace benji_bot
@@ -27,14 +28,23 @@ namespace benji_bot
             .AddSingleton(_commands)
             .BuildServiceProvider();
 
-            string botToken = "7HOJgZQ-9fePfRzDeKLSiJVKRHiPdo59";
+            string botToken = "NjM2NTMwNDU3OTk5MzEwODQ5.XbLv6A.XPEsoU0cGLBNd16aNc2NYw7Qx6Q";
             ///event sub
             _client.Log += Log;
+            _client.UserJoined += AnnouceUserjoined;
+
             await RegisterCommandsAsync();
 
             await _client.LoginAsync(TokenType.Bot, botToken);
             await _client.StartAsync();
             await Task.Delay(-1);
+        }
+
+        private async Task AnnouceUserjoined(SocketGuildUser user)
+        {
+            var guild = user.Guild;
+            var channel = guild.DefaultChannel;
+            await channel.SendMessageAsync($"welcome, {user.Mention}");
         }
 
         private Task Log(LogMessage arg)
@@ -44,10 +54,18 @@ namespace benji_bot
         }
 
         public async Task RegisterCommandsAsync() 
+
         {
+
             _client.MessageReceived += HandleCommandsAsync;
 
-            await _commands.AddModuleAsync(AssemblyLoadEventArgs.GetEntryAssembly());
+
+
+           await _commands.AddModulesAsync(Assembly.GetEntryAssembly(),
+               services:null);
+
+
+           
         }
 
         private async Task HandleCommandsAsync(SocketMessage arg)
@@ -57,7 +75,7 @@ namespace benji_bot
             if (message is null || message.Author.IsBot) return;
 
             int argpos = 0;
-            if (message.HasStringPrefix("tnt!", ref argpos)|| message.HasMentionPrefix(_client.CurrentUser, ref argpos))
+            if (message.HasStringPrefix("}", ref argpos)|| message.HasMentionPrefix(_client.CurrentUser, ref argpos))
             {
                 var context = new SocketCommandContext(_client, message);
 
