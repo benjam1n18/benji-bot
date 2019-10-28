@@ -1,0 +1,103 @@
+using Discord;
+using Discord.Commands;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace benji_bot.MOdules
+{
+    public class intro : ModuleBase<SocketCommandContext>
+
+    {
+        [Command("intro")]
+        public async Task PingAsync()
+        {
+            await ReplyAsync("Hello Discord! i am Benji-bot. i've recently been created by @benjam1n#1107. If you have any feed back or tips you can just send him a message. And i hope i can help. sincerely Benji-Bot");
+        }
+
+        [Command("trevor")]
+        public async Task TrevorAsync()
+        {
+            await ReplyAsync("I am gay -trevor 2019");
+        }
+
+        [Command("WARNING")]
+        public async Task warAsync()
+        {
+            await ReplyAsync("HEY THAT'S ILLEGAL");
+        }
+
+        [Command("sander")]
+        public async Task SanderAsync()
+        {
+            await ReplyAsync("Hey geilerd -Sander 2019");
+        }
+
+
+        [Command("cunt")]
+        public async Task cuntAsync()
+        {
+            await ReplyAsync("you're a cunt Petrock");
+        }
+
+        [Command("maarten")]
+        public async Task maartenAsync()
+        {
+            await ReplyAsync("https://cdn.discordapp.com/attachments/637400682613178378/638296569434865744/Snapchat-447735233.jpg");
+        }
+
+        [Command("kanker")]
+        public async Task kankerAsync()
+        {
+            await ReplyAsync("https://www.youtube.com/watch?v=Oc6BxpmhrHM&list=PLgZKUzfbHmaAk1a35hVXhHh_zHRTyXWga");
+        }
+
+        [Command("nigga")]
+        public async Task nwordAsync()
+        {
+            await ReplyAsync("YOU CANNOT SAY THE N-WORD");
+        }
+
+
+        [Command("iloveyou")]
+        public async Task loveAsync()
+        {
+            await ReplyAsync("i love you too :heart:");
+        }
+        [Command("slap")]
+        public async Task SlapAsync()
+        {
+            await ReplyAsync("https://tenor.com/view/gap-slapped-knockout-punch-gif-5122019");
+        }
+        [Command("help")]
+        public async Task HelpAsync()
+        {
+            await ReplyAsync("commands- iloveyou, }   kanker, }   intro,  }slap ");
+        }
+
+        [Command("ping")]
+        public async Task embedAsync()
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+
+            builder.WithTitle("ping")
+
+               .WithDescription("amazing ping")
+         .WithColor(Color.Blue);
+
+          await ReplyAsync("", false, builder.Build());
+       }
+
+      //  public async Task embedAsync()
+        //{
+        //    EmbedBuilder builder = new EmbedBuilder();
+
+          //  builder.AddField("1","test")
+           //     .AddInLineField("2","test")
+           //     .Addi
+
+        //  await ReplyAsync("", false, builder.Build());
+      // }
+    }
+}
