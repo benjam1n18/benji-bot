@@ -1,7 +1,9 @@
 using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,35 +12,51 @@ namespace benji_bot.MOdules
     public class intro : ModuleBase<SocketCommandContext>
 
     {
+        [Command("ban")]
+        public async Task banAsync(SocketGuildUser usertobehammered, String banre)
+        {
+            var rUser = Context.User as SocketGuildUser;
+            var role = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Bot Admin");
+
+            if (rUser.Roles.Contains(role))
+            {
+                await ReplyAsync($"User {usertobehammered.Mention} has been banned.");
+                await Context.Guild.AddBanAsync(usertobehammered, 0, banre);
+            }
+
+            else
+            {
+                await ReplyAsync(":no_entry_sign: You need the Bot Admin role to do that!");
+            }
+        }
+
         [Command("intro")]
         public async Task PingAsync()
         {
-            await ReplyAsync("Hello Discord! i am Benji-bot. i've recently been created by @benjam1n#1107. If you have any feed back or tips you can just send him a message. And i hope i can help. sincerely Benji-Bot");
+            await ReplyAsync("Hello Discord! i am Benji-bot. i've recently been created by @benjam1n#1107. " +
+                "If you have any feed back or tips you can just send him a message. And i hope i can help. " +
+                "sincerely Benji-Bot " +
+                "https://tenor.com/view/penguin-hello-hi-heythere-cutie-gif-3950966");
         }
 
-        [Command("trevor")]
-        public async Task TrevorAsync()
-        {
-            await ReplyAsync("I am gay -trevor 2019");
-        }
 
         [Command("WARNING")]
-        public async Task warAsync()
+        public async Task warAsync(string name)
         {
-            await ReplyAsync("HEY THAT'S ILLEGAL");
-        }
-
-        [Command("sander")]
-        public async Task SanderAsync()
-        {
-            await ReplyAsync("Hey geilerd -Sander 2019");
+            await ReplyAsync($"HEY THAT'S ILLEGAL {name}");
         }
 
 
-        [Command("cunt")]
-        public async Task cuntAsync()
+        [Command("noob")]
+        public async Task cuntAsync(string name)
         {
-            await ReplyAsync("you're a cunt Petrock");
+            await ReplyAsync($"{name} is a noob");
+        }
+
+        [Command ("cunt")]
+        public async Task CAsync(string name)
+        {
+            await ReplyAsync($"{name} is a cunt");
         }
 
         [Command("maarten")]
@@ -47,17 +65,15 @@ namespace benji_bot.MOdules
             await ReplyAsync("https://cdn.discordapp.com/attachments/637400682613178378/638296569434865744/Snapchat-447735233.jpg");
         }
 
-        [Command("kanker")]
-        public async Task kankerAsync()
+       
+
+        [Command("BOO")]
+        public async Task b2Async()
         {
-            await ReplyAsync("https://www.youtube.com/watch?v=Oc6BxpmhrHM&list=PLgZKUzfbHmaAk1a35hVXhHh_zHRTyXWga");
+            await ReplyAsync("*BIG SCARE*");
         }
 
-        [Command("nigga")]
-        public async Task nwordAsync()
-        {
-            await ReplyAsync("YOU CANNOT SAY THE N-WORD");
-        }
+
 
 
         [Command("iloveyou")]
@@ -66,14 +82,28 @@ namespace benji_bot.MOdules
             await ReplyAsync("i love you too :heart:");
         }
         [Command("slap")]
-        public async Task SlapAsync()
+        public async Task SlapAsync(string name)
         {
-            await ReplyAsync("https://tenor.com/view/gap-slapped-knockout-punch-gif-5122019");
+            EmbedBuilder builder = new EmbedBuilder();
+
+            builder.WithTitle($"")
+
+               .WithDescription($"https://media.discordapp.net/attachments/572542904074240001/635290403406610462/z.gif")
+         .WithColor(Color.Blue);
+
+            await ReplyAsync($"{name} has been slapped", false, builder.Build());
         }
+
+       [Command ("bbno$")]
+       public async Task BbnomulaAstnc()
+        {
+            await ReplyAsync($"https://tenor.com/view/bbnomula-hey-slide-into-dms-gif-13008323");
+
+            }
         [Command("help")]
         public async Task HelpAsync()
         {
-            await ReplyAsync("commands- iloveyou, }   kanker, }   intro,  }slap ");
+            await ReplyAsync("idk man figure it out yourself lol");
         }
 
         [Command("ping")]
@@ -86,18 +116,19 @@ namespace benji_bot.MOdules
                .WithDescription("amazing ping")
          .WithColor(Color.Blue);
 
-          await ReplyAsync("", false, builder.Build());
-       }
+            await ReplyAsync("", false, builder.Build());
+        }
 
-      //  public async Task embedAsync()
-        //{
-        //    EmbedBuilder builder = new EmbedBuilder();
+        public async Task EmbedAsync()
+        {
+        //    Context.User;
+          //  Context.Client;
+            //Context.Message;
+            //Context.Guild;
 
-          //  builder.AddField("1","test")
-           //     .AddInLineField("2","test")
-           //     .Addi
 
-        //  await ReplyAsync("", false, builder.Build());
-      // }
+
+       //await ReplyAsync($"{Context.User.mention} sent {Context.Message.Content} in {Context.Guild.Name}!");
+         }
     }
 }
