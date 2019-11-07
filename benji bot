@@ -11,10 +11,10 @@ namespace benji_bot
     class Program
     {
         static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
-        
 
 
-   
+
+
         private DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
@@ -28,7 +28,7 @@ namespace benji_bot
             .AddSingleton(_commands)
             .BuildServiceProvider();
 
-            string botToken = "NjM2NTMwNDU3OTk5MzEwODQ5.XbLv6A.XPEsoU0cGLBNd16aNc2NYw7Qx6Q";
+            string botToken = "NjM4NjYzMDIyNTQ5OTI1OTM4.Xbf_4w.Mr35qUcGik65Gk-7qippSG3P5Cc";
             ///event sub
             _client.Log += Log;
             _client.UserJoined += AnnouceUserjoined;
@@ -44,7 +44,15 @@ namespace benji_bot
         {
             var guild = user.Guild;
             var channel = guild.DefaultChannel;
-            await channel.SendMessageAsync($"welcome, {user.Mention}");
+            await channel.SendMessageAsync($"welcome, {user.Mention}!!");
+        }
+
+        private async Task badlang(SocketGuildUser user)
+        {
+            var guild = user.Guild;
+            var channel = guild.DefaultChannel;
+            await channel.SendMessageAsync($" that word is not allowed {user.Mention}!!");
+            
         }
 
         private Task Log(LogMessage arg)
@@ -53,7 +61,7 @@ namespace benji_bot
             return Task.CompletedTask;
         }
 
-        public async Task RegisterCommandsAsync() 
+        public async Task RegisterCommandsAsync()
 
         {
 
@@ -61,11 +69,11 @@ namespace benji_bot
 
 
 
-           await _commands.AddModulesAsync(Assembly.GetEntryAssembly(),
-               services:null);
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(),
+                services: null);
 
 
-           
+
         }
 
         private async Task HandleCommandsAsync(SocketMessage arg)
@@ -75,17 +83,16 @@ namespace benji_bot
             if (message is null || message.Author.IsBot) return;
 
             int argpos = 0;
-            if (message.HasStringPrefix("}", ref argpos)|| message.HasMentionPrefix(_client.CurrentUser, ref argpos))
+            if (message.HasStringPrefix(">", ref argpos) || message.HasMentionPrefix(_client.CurrentUser, ref argpos))
             {
                 var context = new SocketCommandContext(_client, message);
 
-                var result =  await _commands.ExecuteAsync(context, argpos, _services);
+                var result = await _commands.ExecuteAsync(context, argpos, _services);
                 if (!result.IsSuccess)
                     Console.WriteLine(result.ErrorReason);
 
             }
         }
 
-        }
     }
-
+}
