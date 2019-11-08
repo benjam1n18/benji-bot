@@ -30,6 +30,12 @@ namespace benji_bot.MOdules
             }
         }
 
+        [Command("contact")]
+    public async Task conAsync()
+        {
+            await ReplyAsync($"you can contact my creator at ");
+        }
+
         [Command("intro")]
         public async Task PingAsync()
         {
@@ -53,7 +59,7 @@ namespace benji_bot.MOdules
             await ReplyAsync($"{name} is a noob");
         }
 
-        [Command ("cunt")]
+        [Command("cunt")]
         public async Task CAsync(string name)
         {
             await ReplyAsync($"{name} is a cunt");
@@ -65,7 +71,7 @@ namespace benji_bot.MOdules
             await ReplyAsync("https://cdn.discordapp.com/attachments/637400682613178378/638296569434865744/Snapchat-447735233.jpg");
         }
 
-       
+
 
         [Command("BOO")]
         public async Task b2Async()
@@ -74,7 +80,11 @@ namespace benji_bot.MOdules
         }
 
 
-
+        [Command("ilove")]
+        public async Task loveAsync(string name)
+        {
+            await ReplyAsync($"I LOVE {name}:heart: :heart: !!!!");
+        }
 
         [Command("iloveyou")]
         public async Task loveAsync()
@@ -94,12 +104,12 @@ namespace benji_bot.MOdules
             await ReplyAsync($"{name} has been slapped", false, builder.Build());
         }
 
-       [Command ("bbno$")]
-       public async Task BbnomulaAstnc()
+        [Command("bbno$")]
+        public async Task BbnomulaAstnc()
         {
             await ReplyAsync($"https://tenor.com/view/bbnomula-hey-slide-into-dms-gif-13008323");
 
-            }
+        }
         [Command("help")]
         public async Task HelpAsync()
         {
@@ -121,14 +131,14 @@ namespace benji_bot.MOdules
 
         public async Task EmbedAsync()
         {
-        //    Context.User;
-          //  Context.Client;
+            //    Context.User;
+            //  Context.Client;
             //Context.Message;
             //Context.Guild;
 
 
 
-       //await ReplyAsync($"{Context.User.mention} sent {Context.Message.Content} in {Context.Guild.Name}!");
-         }
+            //await ReplyAsync($"{Context.User.mention} sent {Context.Message.Content} in {Context.Guild.Name}!");
+        }
     }
 }
