@@ -28,7 +28,7 @@ namespace benji_bot
             .AddSingleton(_commands)
             .BuildServiceProvider();
 
-            string botToken = "NjM4NjYzMDIyNTQ5OTI1OTM4.Xbf_4w.Mr35qUcGik65Gk-7qippSG3P5Cc";
+            string botToken = "bot token";
             ///event sub
             _client.Log += Log;
             _client.UserJoined += AnnouceUserjoined;
